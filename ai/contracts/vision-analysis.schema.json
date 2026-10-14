@@ -1,0 +1,349 @@
+{
+  "$defs": {
+    "AnalysisError": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "enum": [
+            "MODEL_LOAD_FAILED",
+            "INFERENCE_FAILED",
+            "INVALID_MODEL_OUTPUT"
+          ],
+          "title": "Code",
+          "type": "string"
+        },
+        "message": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Message",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ],
+      "title": "AnalysisError",
+      "type": "object"
+    },
+    "Candidate": {
+      "additionalProperties": false,
+      "properties": {
+        "candidateId": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Candidateid",
+          "type": "string"
+        },
+        "detectionIds": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Detectionids",
+          "type": "array"
+        },
+        "category": {
+          "enum": [
+            "FIRE",
+            "CROWD",
+            "MEDICAL",
+            "ACCESSIBILITY",
+            "TECHNICAL_FAILURE",
+            "CLEANLINESS",
+            "SECURITY",
+            "OTHER"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "severity": {
+          "anyOf": [
+            {
+              "enum": [
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "CRITICAL"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Severity"
+        },
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "summaryAr": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Summaryar",
+          "type": "string"
+        },
+        "zoneId": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Zoneid"
+        },
+        "assetId": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assetid"
+        },
+        "affectsAccessibility": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Affectsaccessibility"
+        },
+        "decision": {
+          "default": "REVIEW",
+          "enum": [
+            "NONE",
+            "REVIEW",
+            "ALERT",
+            "ALARM"
+          ],
+          "title": "Decision",
+          "type": "string"
+        },
+        "requiresHumanReview": {
+          "default": true,
+          "title": "Requireshumanreview",
+          "type": "boolean"
+        },
+        "decisionReason": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Decisionreason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "candidateId",
+        "detectionIds",
+        "category",
+        "confidence",
+        "summaryAr",
+        "decisionReason"
+      ],
+      "title": "Candidate",
+      "type": "object"
+    },
+    "Detection": {
+      "additionalProperties": false,
+      "properties": {
+        "detectionId": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Detectionid",
+          "type": "string"
+        },
+        "label": {
+          "enum": [
+            "visible_flame",
+            "suspected_smoke"
+          ],
+          "title": "Label",
+          "type": "string"
+        },
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "bbox": {
+          "maxItems": 4,
+          "minItems": 4,
+          "prefixItems": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            }
+          ],
+          "title": "Bbox",
+          "type": "array"
+        },
+        "evidence": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Evidence",
+          "type": "string"
+        }
+      },
+      "required": [
+        "detectionId",
+        "label",
+        "confidence",
+        "bbox",
+        "evidence"
+      ],
+      "title": "Detection",
+      "type": "object"
+    },
+    "ImageQuality": {
+      "additionalProperties": false,
+      "properties": {
+        "usable": {
+          "title": "Usable",
+          "type": "boolean"
+        },
+        "issues": {
+          "items": {
+            "enum": [
+              "DECODE_FAILED",
+              "TOO_SMALL",
+              "TOO_LARGE",
+              "TOO_DARK",
+              "TOO_BRIGHT",
+              "TOO_BLURRY",
+              "EMPTY_IMAGE",
+              "UNSUPPORTED_FORMAT"
+            ],
+            "type": "string"
+          },
+          "title": "Issues",
+          "type": "array"
+        }
+      },
+      "required": [
+        "usable"
+      ],
+      "title": "ImageQuality",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "requestId": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Requestid",
+      "type": "string"
+    },
+    "imageId": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Imageid",
+      "type": "string"
+    },
+    "analysisStatus": {
+      "enum": [
+        "OK",
+        "UNUSABLE",
+        "ERROR"
+      ],
+      "title": "Analysisstatus",
+      "type": "string"
+    },
+    "modelVersion": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Modelversion",
+      "type": "string"
+    },
+    "policyVersion": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Policyversion",
+      "type": "string"
+    },
+    "imageQuality": {
+      "$ref": "#/$defs/ImageQuality"
+    },
+    "detections": {
+      "items": {
+        "$ref": "#/$defs/Detection"
+      },
+      "title": "Detections",
+      "type": "array"
+    },
+    "candidates": {
+      "items": {
+        "$ref": "#/$defs/Candidate"
+      },
+      "title": "Candidates",
+      "type": "array"
+    },
+    "limitations": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    },
+    "error": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AnalysisError"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "requestId",
+    "imageId",
+    "analysisStatus",
+    "modelVersion",
+    "policyVersion",
+    "imageQuality"
+  ],
+  "title": "VisionAnalysis",
+  "type": "object"
+}

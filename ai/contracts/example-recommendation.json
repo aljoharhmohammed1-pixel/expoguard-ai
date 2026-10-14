@@ -1,0 +1,5 @@
+{
+  "facts": {"referenceId": "backend-demo-incident", "category": "FIRE", "evidenceIds": ["req-demo:det-1"], "zoneId": "TEST-ZONE"},
+  "playbooks": [],
+  "now": "2026-10-13T10:01:00Z"
+}

@@ -1,0 +1,98 @@
+{
+  "$defs": {
+    "Finding": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "enum": [
+            "dense_crowd",
+            "obstructed_path",
+            "person_on_ground",
+            "visible_asset_damage",
+            "other_visible_hazard"
+          ],
+          "title": "Label",
+          "type": "string"
+        },
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "evidence": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Evidence",
+          "type": "string"
+        }
+      },
+      "required": [
+        "label",
+        "confidence",
+        "evidence"
+      ],
+      "title": "Finding",
+      "type": "object"
+    },
+    "ImageQuality": {
+      "additionalProperties": false,
+      "properties": {
+        "usable": {
+          "title": "Usable",
+          "type": "boolean"
+        },
+        "issues": {
+          "items": {
+            "enum": [
+              "DECODE_FAILED",
+              "TOO_SMALL",
+              "TOO_LARGE",
+              "TOO_DARK",
+              "TOO_BRIGHT",
+              "TOO_BLURRY",
+              "EMPTY_IMAGE",
+              "UNSUPPORTED_FORMAT"
+            ],
+            "type": "string"
+          },
+          "title": "Issues",
+          "type": "array"
+        }
+      },
+      "required": [
+        "usable"
+      ],
+      "title": "ImageQuality",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "status": {
+      "enum": [
+        "OK",
+        "UNUSABLE"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "quality": {
+      "$ref": "#/$defs/ImageQuality"
+    },
+    "findings": {
+      "items": {
+        "$ref": "#/$defs/Finding"
+      },
+      "maxItems": 30,
+      "title": "Findings",
+      "type": "array"
+    }
+  },
+  "required": [
+    "status",
+    "quality"
+  ],
+  "title": "VisionResponse",
+  "type": "object"
+}

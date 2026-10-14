@@ -1,0 +1,181 @@
+{
+  "$defs": {
+    "PlaybookStep": {
+      "additionalProperties": false,
+      "properties": {
+        "stepId": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Stepid",
+          "type": "string"
+        },
+        "textAr": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Textar",
+          "type": "string"
+        },
+        "sourceSection": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Sourcesection",
+          "type": "string"
+        }
+      },
+      "required": [
+        "stepId",
+        "textAr",
+        "sourceSection"
+      ],
+      "title": "PlaybookStep",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "playbookId": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Playbookid",
+      "type": "string"
+    },
+    "version": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Version",
+      "type": "string"
+    },
+    "title": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Title",
+      "type": "string"
+    },
+    "sourceRef": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Sourceref",
+      "type": "string"
+    },
+    "approvalStatus": {
+      "enum": [
+        "DRAFT",
+        "APPROVED",
+        "REVOKED"
+      ],
+      "title": "Approvalstatus",
+      "type": "string"
+    },
+    "approvedBy": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Approvedby"
+    },
+    "approvedAt": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Approvedat"
+    },
+    "effectiveFrom": {
+      "format": "date-time",
+      "title": "Effectivefrom",
+      "type": "string"
+    },
+    "expiresAt": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Expiresat"
+    },
+    "categories": {
+      "items": {
+        "enum": [
+          "FIRE",
+          "CROWD",
+          "MEDICAL",
+          "ACCESSIBILITY",
+          "TECHNICAL_FAILURE",
+          "CLEANLINESS",
+          "SECURITY",
+          "OTHER"
+        ],
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Categories",
+      "type": "array"
+    },
+    "zoneIds": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Zoneids",
+      "type": "array"
+    },
+    "assetIds": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Assetids",
+      "type": "array"
+    },
+    "requiresKnownAsset": {
+      "default": false,
+      "title": "Requiresknownasset",
+      "type": "boolean"
+    },
+    "testOnly": {
+      "default": false,
+      "title": "Testonly",
+      "type": "boolean"
+    },
+    "steps": {
+      "items": {
+        "$ref": "#/$defs/PlaybookStep"
+      },
+      "minItems": 1,
+      "title": "Steps",
+      "type": "array"
+    }
+  },
+  "required": [
+    "playbookId",
+    "version",
+    "title",
+    "sourceRef",
+    "approvalStatus",
+    "effectiveFrom",
+    "categories",
+    "steps"
+  ],
+  "title": "Playbook",
+  "type": "object"
+}

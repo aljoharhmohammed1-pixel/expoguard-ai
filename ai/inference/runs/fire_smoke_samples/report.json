@@ -1,0 +1,144 @@
+{
+  "model": "infernoguard_best.pt",
+  "device": "cpu",
+  "confidence_threshold": 0.35,
+  "image_size": 640,
+  "source": "https://github.com/DeepQuestAI/Fire-Smoke-Dataset",
+  "note": "Small demonstration sample, not an independent accuracy benchmark; training overlap unknown.",
+  "results": [
+    {
+      "file": "fire_1.jpg",
+      "source_category": "fire",
+      "detections": [
+        {
+          "class": "fire",
+          "confidence": 0.7245,
+          "xyxy": [
+            70.13690185546875,
+            146.64016723632812,
+            100.0975341796875,
+            194.0
+          ]
+        },
+        {
+          "class": "fire",
+          "confidence": 0.4953,
+          "xyxy": [
+            9.679228782653809,
+            0.28324034810066223,
+            258.4647216796875,
+            113.97799682617188
+          ]
+        },
+        {
+          "class": "smoke",
+          "confidence": 0.3792,
+          "xyxy": [
+            0.0,
+            0.6982870697975159,
+            48.244972229003906,
+            79.71054077148438
+          ]
+        }
+      ],
+      "speed_ms": {
+        "preprocess": 21.61520009394735,
+        "inference": 319.93920006789267,
+        "postprocess": 24.285600055009127
+      }
+    },
+    {
+      "file": "fire_2.jpg",
+      "source_category": "fire",
+      "detections": [
+        {
+          "class": "fire",
+          "confidence": 0.8904,
+          "xyxy": [
+            0.13728022575378418,
+            2.152265787124634,
+            128.8472900390625,
+            173.5806427001953
+          ]
+        }
+      ],
+      "speed_ms": {
+        "preprocess": 5.346899968571961,
+        "inference": 275.3862999379635,
+        "postprocess": 3.3656000159680843
+      }
+    },
+    {
+      "file": "smoke_1.jpg",
+      "source_category": "smoke",
+      "detections": [
+        {
+          "class": "smoke",
+          "confidence": 0.5758,
+          "xyxy": [
+            54.668495178222656,
+            2.522212505340576,
+            260.1950378417969,
+            166.7179412841797
+          ]
+        },
+        {
+          "class": "smoke",
+          "confidence": 0.4847,
+          "xyxy": [
+            58.62186813354492,
+            2.6459052562713623,
+            203.3923797607422,
+            170.83697509765625
+          ]
+        }
+      ],
+      "speed_ms": {
+        "preprocess": 10.207699961028993,
+        "inference": 237.08440002519637,
+        "postprocess": 1.7383000813424587
+      }
+    },
+    {
+      "file": "smoke_2.jpg",
+      "source_category": "smoke",
+      "detections": [
+        {
+          "class": "smoke",
+          "confidence": 0.8571,
+          "xyxy": [
+            2.4339451789855957,
+            4.709602355957031,
+            283.3546447753906,
+            171.4788360595703
+          ]
+        }
+      ],
+      "speed_ms": {
+        "preprocess": 4.265099996700883,
+        "inference": 191.05889997445047,
+        "postprocess": 5.645100027322769
+      }
+    },
+    {
+      "file": "neutral_1.jpg",
+      "source_category": "neutral",
+      "detections": [],
+      "speed_ms": {
+        "preprocess": 6.625100038945675,
+        "inference": 250.81070000305772,
+        "postprocess": 1.1309999972581863
+      }
+    },
+    {
+      "file": "neutral_2.jpg",
+      "source_category": "neutral",
+      "detections": [],
+      "speed_ms": {
+        "preprocess": 6.010300014168024,
+        "inference": 220.19709995947778,
+        "postprocess": 1.018799957819283
+      }
+    }
+  ]
+}

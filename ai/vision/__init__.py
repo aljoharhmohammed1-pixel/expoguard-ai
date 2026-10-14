@@ -1,0 +1,1 @@
+"""General scene analysis adapters."""

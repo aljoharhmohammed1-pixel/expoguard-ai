@@ -1,0 +1,82 @@
+{
+  "$defs": {
+    "TextFinding": {
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "enum": [
+            "FIRE",
+            "CROWD",
+            "MEDICAL",
+            "TECHNICAL_FAILURE",
+            "OTHER"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "evidence": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Evidence",
+          "type": "string"
+        },
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        },
+        "end": {
+          "exclusiveMinimum": 0,
+          "title": "End",
+          "type": "integer"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        }
+      },
+      "required": [
+        "category",
+        "evidence",
+        "start",
+        "end"
+      ],
+      "title": "TextFinding",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "status": {
+      "enum": [
+        "OK",
+        "UNUSABLE"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "findings": {
+      "items": {
+        "$ref": "#/$defs/TextFinding"
+      },
+      "maxItems": 30,
+      "title": "Findings",
+      "type": "array"
+    }
+  },
+  "required": [
+    "status"
+  ],
+  "title": "TextResponse",
+  "type": "object"
+}

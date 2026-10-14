@@ -1,0 +1,17 @@
+{
+  "contractVersion": "1.0.0",
+  "inputType": "IMAGE",
+  "analysisMode": "FIRE_SMOKE",
+  "metadata": {
+    "requestId": "req-demo-001",
+    "imageId": "img-demo-001",
+    "source": "CCTV",
+    "capturedAt": "2026-10-13T10:00:00Z",
+    "cameraId": "CAM-DEMO-001",
+    "zoneId": null,
+    "eventId": null,
+    "assetId": null,
+    "regionOfInterest": null,
+    "context": {}
+  }
+}

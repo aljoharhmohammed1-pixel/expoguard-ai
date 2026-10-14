@@ -1,0 +1,115 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "alertIds": {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+        {
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        {
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        }
+      ],
+      "title": "Alertids",
+      "type": "array"
+    },
+    "policyVersion": {
+      "default": "correlation-heuristic-v0.1.0",
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Policyversion",
+      "type": "string"
+    },
+    "windowSeconds": {
+      "exclusiveMinimum": 0,
+      "title": "Windowseconds",
+      "type": "integer"
+    },
+    "reviewThreshold": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Reviewthreshold",
+      "type": "number"
+    },
+    "decision": {
+      "enum": [
+        "REVIEW_LINK",
+        "NO_SUGGESTION",
+        "SAME_ALERT"
+      ],
+      "title": "Decision",
+      "type": "string"
+    },
+    "correlationScore": {
+      "anyOf": [
+        {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Correlationscore"
+    },
+    "lexicalSimilarity": {
+      "anyOf": [
+        {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Lexicalsimilarity"
+    },
+    "timeDeltaSeconds": {
+      "minimum": 0,
+      "title": "Timedeltaseconds",
+      "type": "number"
+    },
+    "reasons": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+    },
+    "requiresHumanReview": {
+      "const": true,
+      "default": true,
+      "title": "Requireshumanreview",
+      "type": "boolean"
+    },
+    "limitations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    }
+  },
+  "required": [
+    "alertIds",
+    "windowSeconds",
+    "reviewThreshold",
+    "decision",
+    "correlationScore",
+    "lexicalSimilarity",
+    "timeDeltaSeconds",
+    "reasons"
+  ],
+  "title": "CorrelationProposal",
+  "type": "object"
+}

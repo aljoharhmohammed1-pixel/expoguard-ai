@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-10-14T13:52:59.421146+00:00",
+  "integration": true,
+  "sourceDigest": "73b2f930adfce9b43139b8299fd7c2ef1bff5bb68e07a1f70f56421a9825a6eb",
+  "testsRun": 148,
+  "skipped": 0,
+  "failures": [],
+  "errors": [],
+  "seconds": 57.083,
+  "passed": true
+}

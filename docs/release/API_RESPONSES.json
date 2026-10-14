@@ -1,0 +1,684 @@
+[
+  {
+    "name": "Health",
+    "request": null,
+    "httpStatus": 200,
+    "response": {
+      "status": "ok",
+      "service": "expoguard-ai",
+      "version": "0.1.0-integration",
+      "device": "cpu",
+      "modelsReady": true
+    }
+  },
+  {
+    "name": "Models",
+    "request": null,
+    "httpStatus": 200,
+    "response": {
+      "models": [
+        {
+          "id": "fire-smoke",
+          "version": "fire-smoke-infernoguard-v1.0.0",
+          "policyVersion": "fire-review-v0.3.0",
+          "task": "object_detection",
+          "framework": "ultralytics",
+          "status": "ready",
+          "device": "cpu",
+          "classes": [
+            "visible_flame",
+            "suspected_smoke"
+          ],
+          "sha256": "5fe6eb54fc9006e6f31c178fa2efe04524e2faf6b6955e8c6967d57ffd008ab5"
+        },
+        {
+          "id": "person-detector",
+          "version": "yolo26n-person-v1.0.0",
+          "policyVersion": "crowd-occupancy-v1.0.0",
+          "usedFor": "crowd-analysis",
+          "inferenceVersion": "person-resolution-v1.1.0",
+          "supportedImageSizes": [
+            640,
+            960,
+            1280,
+            1600
+          ],
+          "task": "object_detection",
+          "framework": "ultralytics",
+          "status": "ready",
+          "device": "cpu",
+          "classes": [
+            "person"
+          ],
+          "sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Fire image",
+    "request": {
+      "method": "POST",
+      "path": "/v1/analyze/image",
+      "form": {
+        "requestId": "Fire image",
+        "imageId": "Fire image",
+        "source": "VISITOR_APP",
+        "capturedAt": "2026-10-14T09:00:00Z"
+      },
+      "file": "fire_1.jpg"
+    },
+    "httpStatus": 200,
+    "response": {
+      "schemaVersion": "2.0.0",
+      "requestId": "Fire image",
+      "inputType": "IMAGE",
+      "imageId": "Fire image",
+      "textId": null,
+      "audioId": null,
+      "analysisStatus": "OK",
+      "modelVersion": "fire-smoke-infernoguard-v1.0.0",
+      "policyVersion": "fire-review-v0.3.0",
+      "componentVersions": {
+        "fire": "fire-smoke-infernoguard-v1.0.0"
+      },
+      "imageQuality": {
+        "usable": true,
+        "issues": []
+      },
+      "transcript": null,
+      "detections": [
+        {
+          "detectionId": "det-1",
+          "modality": "IMAGE",
+          "label": "suspected_smoke",
+          "confidence": 0.3792109787464142,
+          "bbox": [
+            0.0,
+            0.0035994178855542056,
+            0.18627402405020813,
+            0.410879076141672
+          ],
+          "evidence": "Suspected smoke; this does not confirm fire.",
+          "textSpan": null
+        },
+        {
+          "detectionId": "det-2",
+          "modality": "IMAGE",
+          "label": "visible_flame",
+          "confidence": 0.49526673555374146,
+          "bbox": [
+            0.03737153970136606,
+            0.0014600017943333105,
+            0.9979332883385618,
+            0.587515447557587
+          ],
+          "evidence": "Visible flame indicator.",
+          "textSpan": null
+        },
+        {
+          "detectionId": "det-3",
+          "modality": "IMAGE",
+          "label": "visible_flame",
+          "confidence": 0.724452018737793,
+          "bbox": [
+            0.2707988488628137,
+            0.7558771507027223,
+            0.3864769659447394,
+            1.0
+          ],
+          "evidence": "Visible flame indicator.",
+          "textSpan": null
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "cand-1",
+          "detectionIds": [
+            "det-1",
+            "det-2"
+          ],
+          "category": "FIRE",
+          "severity": null,
+          "confidence": 0.49526673555374146,
+          "summaryAr": "رصد مؤشرات بصرية على لهب ودخان محتمل؛ تحتاج إلى مراجعة.",
+          "zoneId": null,
+          "assetId": null,
+          "affectsAccessibility": null,
+          "decision": "REVIEW",
+          "requiresHumanReview": true,
+          "decisionReason": "Visual evidence requires backend policy evaluation; confidence is the maximum evidence score, not a calibrated incident probability.",
+          "mentionedZone": null
+        },
+        {
+          "candidateId": "cand-2",
+          "detectionIds": [
+            "det-3"
+          ],
+          "category": "FIRE",
+          "severity": null,
+          "confidence": 0.724452018737793,
+          "summaryAr": "رصد مؤشر بصري محتمل على وجود لهب؛ يحتاج إلى مراجعة.",
+          "zoneId": null,
+          "assetId": null,
+          "affectsAccessibility": null,
+          "decision": "REVIEW",
+          "requiresHumanReview": true,
+          "decisionReason": "Visual evidence requires backend policy evaluation; confidence is the maximum evidence score, not a calibrated incident probability.",
+          "mentionedZone": null
+        }
+      ],
+      "limitations": [
+        "Single-image visual indicators only.",
+        "Candidates group overlapping boxes only; spatially separate evidence may belong to the same incident.",
+        "Candidate confidence is maximum detection confidence, not a calibrated probability.",
+        "Quality gate checks decode, format, size and extreme brightness; blur and occlusion are not assessed.",
+        "Crowd analysis skipped: no camera configuration."
+      ],
+      "error": null
+    }
+  },
+  {
+    "name": "Smoke image",
+    "request": {
+      "method": "POST",
+      "path": "/v1/analyze/image",
+      "form": {
+        "requestId": "Smoke image",
+        "imageId": "Smoke image",
+        "source": "VISITOR_APP",
+        "capturedAt": "2026-10-14T09:00:00Z"
+      },
+      "file": "smoke_1.jpg"
+    },
+    "httpStatus": 200,
+    "response": {
+      "schemaVersion": "2.0.0",
+      "requestId": "Smoke image",
+      "inputType": "IMAGE",
+      "imageId": "Smoke image",
+      "textId": null,
+      "audioId": null,
+      "analysisStatus": "OK",
+      "modelVersion": "fire-smoke-infernoguard-v1.0.0",
+      "policyVersion": "fire-review-v0.3.0",
+      "componentVersions": {
+        "fire": "fire-smoke-infernoguard-v1.0.0"
+      },
+      "imageQuality": {
+        "usable": true,
+        "issues": []
+      },
+      "transcript": null,
+      "detections": [
+        {
+          "detectionId": "det-1",
+          "modality": "IMAGE",
+          "label": "suspected_smoke",
+          "confidence": 0.575785756111145,
+          "bbox": [
+            0.19181928132709705,
+            0.014249788165765966,
+            0.9129650450589364,
+            0.9419092727919757
+          ],
+          "evidence": "Suspected smoke; this does not confirm fire.",
+          "textSpan": null
+        },
+        {
+          "detectionId": "det-2",
+          "modality": "IMAGE",
+          "label": "suspected_smoke",
+          "confidence": 0.4847378730773926,
+          "bbox": [
+            0.20569076538085937,
+            0.014948617267069843,
+            0.7136574728447095,
+            0.9651806502692444
+          ],
+          "evidence": "Suspected smoke; this does not confirm fire.",
+          "textSpan": null
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "cand-1",
+          "detectionIds": [
+            "det-1",
+            "det-2"
+          ],
+          "category": "FIRE",
+          "severity": null,
+          "confidence": 0.575785756111145,
+          "summaryAr": "رصد دخان محتمل؛ لا يثبت وجود حريق ويحتاج إلى مراجعة.",
+          "zoneId": null,
+          "assetId": null,
+          "affectsAccessibility": null,
+          "decision": "REVIEW",
+          "requiresHumanReview": true,
+          "decisionReason": "Visual evidence requires backend policy evaluation; confidence is the maximum evidence score, not a calibrated incident probability.",
+          "mentionedZone": null
+        }
+      ],
+      "limitations": [
+        "Single-image visual indicators only.",
+        "Candidates group overlapping boxes only; spatially separate evidence may belong to the same incident.",
+        "Candidate confidence is maximum detection confidence, not a calibrated probability.",
+        "Quality gate checks decode, format, size and extreme brightness; blur and occlusion are not assessed.",
+        "Crowd analysis skipped: no camera configuration."
+      ],
+      "error": null
+    }
+  },
+  {
+    "name": "Normal image",
+    "request": {
+      "method": "POST",
+      "path": "/v1/analyze/image",
+      "form": {
+        "requestId": "Normal image",
+        "imageId": "Normal image",
+        "source": "VISITOR_APP",
+        "capturedAt": "2026-10-14T09:00:00Z"
+      },
+      "file": "neutral_1.jpg"
+    },
+    "httpStatus": 200,
+    "response": {
+      "schemaVersion": "2.0.0",
+      "requestId": "Normal image",
+      "inputType": "IMAGE",
+      "imageId": "Normal image",
+      "textId": null,
+      "audioId": null,
+      "analysisStatus": "OK",
+      "modelVersion": "fire-smoke-infernoguard-v1.0.0",
+      "policyVersion": "fire-review-v0.3.0",
+      "componentVersions": {
+        "fire": "fire-smoke-infernoguard-v1.0.0"
+      },
+      "imageQuality": {
+        "usable": true,
+        "issues": []
+      },
+      "transcript": null,
+      "detections": [],
+      "candidates": [],
+      "limitations": [
+        "Single-image visual indicators only.",
+        "Candidates group overlapping boxes only; spatially separate evidence may belong to the same incident.",
+        "Candidate confidence is maximum detection confidence, not a calibrated probability.",
+        "Quality gate checks decode, format, size and extreme brightness; blur and occlusion are not assessed.",
+        "Crowd analysis skipped: no camera configuration."
+      ],
+      "error": null
+    }
+  },
+  {
+    "name": "Corrupt image",
+    "request": {
+      "method": "POST",
+      "path": "/v1/analyze/image",
+      "form": {
+        "requestId": "Corrupt image",
+        "imageId": "Corrupt image",
+        "source": "VISITOR_APP",
+        "capturedAt": "2026-10-14T09:00:00Z"
+      },
+      "file": "corrupt.jpg"
+    },
+    "httpStatus": 200,
+    "response": {
+      "schemaVersion": "2.0.0",
+      "requestId": "Corrupt image",
+      "inputType": "IMAGE",
+      "imageId": "Corrupt image",
+      "textId": null,
+      "audioId": null,
+      "analysisStatus": "UNUSABLE",
+      "modelVersion": "fire-smoke-infernoguard-v1.0.0",
+      "policyVersion": "fire-review-v0.3.0",
+      "componentVersions": {
+        "fire": "fire-smoke-infernoguard-v1.0.0"
+      },
+      "imageQuality": {
+        "usable": false,
+        "issues": [
+          "DECODE_FAILED"
+        ]
+      },
+      "transcript": null,
+      "detections": [],
+      "candidates": [],
+      "limitations": [],
+      "error": null
+    }
+  },
+  {
+    "name": "Crowd configured camera",
+    "request": {
+      "method": "POST",
+      "path": "/v1/analyze/image",
+      "form": {
+        "requestId": "Crowd configured camera",
+        "imageId": "Crowd configured camera",
+        "source": "CCTV",
+        "capturedAt": "2026-10-14T09:00:00Z",
+        "cameraId": "INTEGRATION-DEMO"
+      },
+      "file": "ultralytics-assets-bus.jpg"
+    },
+    "httpStatus": 200,
+    "response": {
+      "schemaVersion": "2.0.0",
+      "requestId": "Crowd configured camera",
+      "inputType": "IMAGE",
+      "imageId": "Crowd configured camera",
+      "textId": null,
+      "audioId": null,
+      "analysisStatus": "OK",
+      "modelVersion": "fire-smoke-infernoguard-v1.0.0",
+      "policyVersion": "fire-review-v0.3.0",
+      "componentVersions": {
+        "fire": "fire-smoke-infernoguard-v1.0.0",
+        "crowd": "yolo26n-person-v1.0.0",
+        "crowdPolicy": "crowd-occupancy-v1.0.0",
+        "crowdConfig": "cad4b66f4c3c55c3f5e36c8dac2bf6c394b46a0507f9757bcc7d92f25c4c1db3",
+        "crowdInference": "person-resolution-v1.1.0"
+      },
+      "imageQuality": {
+        "usable": true,
+        "issues": []
+      },
+      "crowdMetrics": {
+        "peopleCount": 4,
+        "capacity": 10,
+        "occupancyRatio": 0.4,
+        "crowdLevel": "NORMAL",
+        "cameraId": "INTEGRATION-DEMO",
+        "zoneId": "DEMO-ZONE",
+        "roiApplied": true
+      },
+      "transcript": null,
+      "detections": [],
+      "candidates": [],
+      "limitations": [
+        "Single-image visual indicators only.",
+        "Candidates group overlapping boxes only; spatially separate evidence may belong to the same incident.",
+        "Candidate confidence is maximum detection confidence, not a calibrated probability.",
+        "Quality gate checks decode, format, size and extreme brightness; blur and occlusion are not assessed.",
+        "Single-frame visible people only; occlusion and camera angle affect counts.",
+        "Configured MVP operational thresholds are not certified crowd-safety limits.",
+        "No identity, tracking, entry/exit flow, speed or prediction."
+      ],
+      "error": null
+    }
+  },
+  {
+    "name": "Camera without crowd configuration",
+    "request": {
+      "method": "POST",
+      "path": "/v1/analyze/image",
+      "form": {
+        "requestId": "Camera without crowd configuration",
+        "imageId": "Camera without crowd configuration",
+        "source": "CCTV",
+        "capturedAt": "2026-10-14T09:00:00Z",
+        "cameraId": "UNKNOWN-CAMERA"
+      },
+      "file": "ultralytics-assets-bus.jpg"
+    },
+    "httpStatus": 200,
+    "response": {
+      "schemaVersion": "2.0.0",
+      "requestId": "Camera without crowd configuration",
+      "inputType": "IMAGE",
+      "imageId": "Camera without crowd configuration",
+      "textId": null,
+      "audioId": null,
+      "analysisStatus": "OK",
+      "modelVersion": "fire-smoke-infernoguard-v1.0.0",
+      "policyVersion": "fire-review-v0.3.0",
+      "componentVersions": {
+        "fire": "fire-smoke-infernoguard-v1.0.0"
+      },
+      "imageQuality": {
+        "usable": true,
+        "issues": []
+      },
+      "transcript": null,
+      "detections": [],
+      "candidates": [],
+      "limitations": [
+        "Single-image visual indicators only.",
+        "Candidates group overlapping boxes only; spatially separate evidence may belong to the same incident.",
+        "Candidate confidence is maximum detection confidence, not a calibrated probability.",
+        "Quality gate checks decode, format, size and extreme brightness; blur and occlusion are not assessed.",
+        "Crowd analysis skipped: no camera configuration."
+      ],
+      "error": null
+    }
+  },
+  {
+    "name": "Arabic text",
+    "request": {
+      "method": "POST",
+      "path": "/v1/analyze/text",
+      "json": {
+        "requestId": "text-demo",
+        "textId": "t-1",
+        "text": "يوجد دخان عند البوابة"
+      }
+    },
+    "httpStatus": 200,
+    "response": {
+      "schemaVersion": "2.0.0",
+      "requestId": "text-demo",
+      "inputType": "TEXT",
+      "imageId": null,
+      "textId": "t-1",
+      "audioId": null,
+      "analysisStatus": "OK",
+      "modelVersion": "arabic-rules-v0.1.0",
+      "policyVersion": "text-review-v0.1.0",
+      "componentVersions": {},
+      "imageQuality": null,
+      "transcript": null,
+      "detections": [
+        {
+          "detectionId": "det-1",
+          "modality": "TEXT",
+          "label": "reported_fire",
+          "confidence": null,
+          "bbox": null,
+          "evidence": "دخان",
+          "textSpan": [
+            5,
+            9
+          ]
+        }
+      ],
+      "candidates": [
+        {
+          "candidateId": "cand-1",
+          "detectionIds": [
+            "det-1"
+          ],
+          "category": "FIRE",
+          "severity": null,
+          "confidence": null,
+          "summaryAr": "بلاغ نصي يتضمن مؤشرًا يحتاج إلى مراجعة بشرية.",
+          "zoneId": null,
+          "assetId": null,
+          "affectsAccessibility": null,
+          "decision": "REVIEW",
+          "requiresHumanReview": true,
+          "decisionReason": "Uncalibrated Arabic rules extracted reported evidence; no diagnosis or incident confirmation.",
+          "mentionedZone": null
+        }
+      ],
+      "limitations": [
+        "Local keyword rules, not general language understanding; dialect, negation and quoted reports may be ambiguous.",
+        "Confidence is unavailable for these uncalibrated rules; human review is required."
+      ],
+      "error": null
+    }
+  },
+  {
+    "name": "Correlation",
+    "request": {
+      "method": "POST",
+      "path": "/v1/correlation/analyze",
+      "json": {
+        "left": {
+          "alertId": "A1",
+          "category": "FIRE",
+          "observedAt": "2026-10-14T09:00:00Z",
+          "zoneId": "DEMO-ZONE"
+        },
+        "right": {
+          "alertId": "A2",
+          "category": "FIRE",
+          "observedAt": "2026-10-14T09:00:08Z",
+          "zoneId": "DEMO-ZONE"
+        }
+      }
+    },
+    "httpStatus": 200,
+    "response": {
+      "proposal": {
+        "alertIds": [
+          "A1",
+          "A2"
+        ],
+        "policyVersion": "correlation-heuristic-v0.1.0",
+        "windowSeconds": 300,
+        "reviewThreshold": 0.7,
+        "decision": "REVIEW_LINK",
+        "correlationScore": 0.793333,
+        "lexicalSimilarity": null,
+        "timeDeltaSeconds": 8.0,
+        "reasons": [
+          "Same category.",
+          "Within configured time window.",
+          "Shared trusted zone or asset.",
+          "Event context incomplete.",
+          "Insufficient text for lexical comparison."
+        ],
+        "requiresHumanReview": true,
+        "limitations": [
+          "Heuristic ranking, not calibrated probability or permission to merge.",
+          "Lexical overlap is not semantic understanding; backend decides incident membership."
+        ]
+      },
+      "scoreBreakdown": {
+        "categoryContribution": 0.2,
+        "locationContribution": 0.35,
+        "timeContribution": 0.24333333333333335,
+        "lexicalContribution": 0.0,
+        "conflictOrTimeGate": false,
+        "sameAlert": false,
+        "finalScore": 0.793333
+      }
+    }
+  },
+  {
+    "name": "Summary",
+    "request": {
+      "method": "POST",
+      "path": "/v1/summary",
+      "json": {
+        "alerts": [
+          {
+            "alertId": "A1",
+            "category": "FIRE",
+            "observedAt": "2026-10-14T09:00:00Z",
+            "zoneId": "DEMO-ZONE"
+          },
+          {
+            "alertId": "A2",
+            "category": "FIRE",
+            "observedAt": "2026-10-14T09:00:08Z",
+            "zoneId": "DEMO-ZONE"
+          }
+        ]
+      }
+    },
+    "httpStatus": 200,
+    "response": {
+      "summaryAr": "ورد 2 بلاغًا يتضمن: مؤشرات حريق محتمل. المناطق المزوّدة: DEMO-ZONE. لا يؤكد هذا الملخص وقوع حادث واحد؛ يلزم التحقق البشري.",
+      "sourceCount": 2,
+      "alertIds": [
+        "A1",
+        "A2"
+      ],
+      "policyVersion": "facts-summary-v0.1.0",
+      "limitations": [
+        "Source count means distinct supplied alert records, not independent cameras or witnesses.",
+        "Grouping is supplied by the caller and is not confirmed by this summary."
+      ]
+    }
+  },
+  {
+    "name": "Recommendation",
+    "request": {
+      "method": "POST",
+      "path": "/v1/recommend",
+      "json": {
+        "referenceId": "review-1",
+        "category": "FIRE",
+        "evidenceIds": [
+          "det-1"
+        ]
+      }
+    },
+    "httpStatus": 200,
+    "response": {
+      "referenceId": "review-1",
+      "policyVersion": "approved-playbook-v0.1.0",
+      "status": "NO_APPROVED_PLAYBOOK",
+      "proposals": [],
+      "reasons": [
+        "No active, approved, non-test playbook; no operational procedure invented."
+      ],
+      "requiresHumanReview": true
+    }
+  },
+  {
+    "name": "Validation error",
+    "request": {
+      "method": "POST",
+      "path": "/v1/analyze/text",
+      "json": {}
+    },
+    "httpStatus": 422,
+    "response": {
+      "error": {
+        "code": "INVALID_REQUEST",
+        "message": "Request could not be completed."
+      }
+    }
+  },
+  {
+    "name": "Oversized body",
+    "request": null,
+    "httpStatus": 413,
+    "response": {
+      "error": {
+        "code": "REQUEST_TOO_LARGE",
+        "message": "Request could not be completed."
+      }
+    }
+  },
+  {
+    "name": "Unsupported MIME",
+    "request": null,
+    "httpStatus": 415,
+    "response": {
+      "error": {
+        "code": "UNSUPPORTED_MEDIA_TYPE",
+        "message": "Request could not be completed."
+      }
+    }
+  }
+]

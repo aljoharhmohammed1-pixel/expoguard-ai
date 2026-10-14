@@ -1,0 +1,85 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "peopleCount": {
+      "minimum": 0,
+      "title": "Peoplecount",
+      "type": "integer"
+    },
+    "capacity": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Capacity"
+    },
+    "occupancyRatio": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Occupancyratio"
+    },
+    "crowdLevel": {
+      "anyOf": [
+        {
+          "enum": [
+            "NORMAL",
+            "MEDIUM",
+            "HIGH",
+            "CRITICAL"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Crowdlevel"
+    },
+    "cameraId": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Cameraid",
+      "type": "string"
+    },
+    "zoneId": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Zoneid"
+    },
+    "roiApplied": {
+      "title": "Roiapplied",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "peopleCount",
+    "cameraId",
+    "roiApplied"
+  ],
+  "title": "CrowdMetrics",
+  "type": "object"
+}

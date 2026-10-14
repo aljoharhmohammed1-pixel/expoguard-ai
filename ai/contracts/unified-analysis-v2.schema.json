@@ -1,0 +1,622 @@
+{
+  "$defs": {
+    "CrowdMetrics": {
+      "additionalProperties": false,
+      "properties": {
+        "peopleCount": {
+          "minimum": 0,
+          "title": "Peoplecount",
+          "type": "integer"
+        },
+        "capacity": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Capacity"
+        },
+        "occupancyRatio": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Occupancyratio"
+        },
+        "crowdLevel": {
+          "anyOf": [
+            {
+              "enum": [
+                "NORMAL",
+                "MEDIUM",
+                "HIGH",
+                "CRITICAL"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Crowdlevel"
+        },
+        "cameraId": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Cameraid",
+          "type": "string"
+        },
+        "zoneId": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Zoneid"
+        },
+        "roiApplied": {
+          "title": "Roiapplied",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "peopleCount",
+        "cameraId",
+        "roiApplied"
+      ],
+      "title": "CrowdMetrics",
+      "type": "object"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "detectionId": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Detectionid",
+          "type": "string"
+        },
+        "modality": {
+          "enum": [
+            "IMAGE",
+            "TEXT"
+          ],
+          "title": "Modality",
+          "type": "string"
+        },
+        "label": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Label",
+          "type": "string"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Confidence"
+        },
+        "bbox": {
+          "anyOf": [
+            {
+              "maxItems": 4,
+              "minItems": 4,
+              "prefixItems": [
+                {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bbox"
+        },
+        "evidence": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Evidence",
+          "type": "string"
+        },
+        "textSpan": {
+          "anyOf": [
+            {
+              "maxItems": 2,
+              "minItems": 2,
+              "prefixItems": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Python Unicode code point offsets [start, end), with 0 <= start < end <= source length. Not UTF-16 code units.",
+          "title": "Textspan"
+        }
+      },
+      "required": [
+        "detectionId",
+        "modality",
+        "label",
+        "confidence",
+        "evidence"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "ImageQuality": {
+      "additionalProperties": false,
+      "properties": {
+        "usable": {
+          "title": "Usable",
+          "type": "boolean"
+        },
+        "issues": {
+          "items": {
+            "enum": [
+              "DECODE_FAILED",
+              "TOO_SMALL",
+              "TOO_LARGE",
+              "TOO_DARK",
+              "TOO_BRIGHT",
+              "TOO_BLURRY",
+              "EMPTY_IMAGE",
+              "UNSUPPORTED_FORMAT"
+            ],
+            "type": "string"
+          },
+          "title": "Issues",
+          "type": "array"
+        }
+      },
+      "required": [
+        "usable"
+      ],
+      "title": "ImageQuality",
+      "type": "object"
+    },
+    "Transcript": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "maxLength": 20000,
+          "title": "Text",
+          "type": "string"
+        },
+        "language": {
+          "const": "ar",
+          "title": "Language",
+          "type": "string"
+        },
+        "transcriptionConfidence": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Transcriptionconfidence"
+        }
+      },
+      "required": [
+        "text",
+        "language"
+      ],
+      "title": "Transcript",
+      "type": "object"
+    },
+    "UnifiedCandidate": {
+      "additionalProperties": false,
+      "properties": {
+        "candidateId": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Candidateid",
+          "type": "string"
+        },
+        "detectionIds": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Detectionids",
+          "type": "array"
+        },
+        "category": {
+          "enum": [
+            "FIRE",
+            "CROWD",
+            "MEDICAL",
+            "ACCESSIBILITY",
+            "TECHNICAL_FAILURE",
+            "CLEANLINESS",
+            "SECURITY",
+            "OTHER"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "severity": {
+          "anyOf": [
+            {
+              "enum": [
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "CRITICAL"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Severity"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Confidence"
+        },
+        "summaryAr": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Summaryar",
+          "type": "string"
+        },
+        "zoneId": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Zoneid"
+        },
+        "assetId": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assetid"
+        },
+        "affectsAccessibility": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Affectsaccessibility"
+        },
+        "decision": {
+          "default": "REVIEW",
+          "enum": [
+            "NONE",
+            "REVIEW",
+            "ALERT",
+            "ALARM"
+          ],
+          "title": "Decision",
+          "type": "string"
+        },
+        "requiresHumanReview": {
+          "default": true,
+          "title": "Requireshumanreview",
+          "type": "boolean"
+        },
+        "decisionReason": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Decisionreason",
+          "type": "string"
+        },
+        "mentionedZone": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mentionedzone"
+        }
+      },
+      "required": [
+        "candidateId",
+        "detectionIds",
+        "category",
+        "confidence",
+        "summaryAr",
+        "decisionReason"
+      ],
+      "title": "UnifiedCandidate",
+      "type": "object"
+    },
+    "UnifiedError": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Code",
+          "type": "string"
+        },
+        "message": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Message",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ],
+      "title": "UnifiedError",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": "2.0.0",
+      "default": "2.0.0",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "requestId": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Requestid",
+      "type": "string"
+    },
+    "inputType": {
+      "enum": [
+        "IMAGE",
+        "TEXT",
+        "AUDIO"
+      ],
+      "title": "Inputtype",
+      "type": "string"
+    },
+    "imageId": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Imageid"
+    },
+    "textId": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Textid"
+    },
+    "audioId": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Audioid"
+    },
+    "analysisStatus": {
+      "enum": [
+        "OK",
+        "UNUSABLE",
+        "ERROR"
+      ],
+      "title": "Analysisstatus",
+      "type": "string"
+    },
+    "modelVersion": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Modelversion",
+      "type": "string"
+    },
+    "policyVersion": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Policyversion",
+      "type": "string"
+    },
+    "componentVersions": {
+      "additionalProperties": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Componentversions",
+      "type": "object"
+    },
+    "imageQuality": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ImageQuality"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "crowdMetrics": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CrowdMetrics"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "transcript": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Transcript"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "detections": {
+      "items": {
+        "$ref": "#/$defs/Evidence"
+      },
+      "title": "Detections",
+      "type": "array"
+    },
+    "candidates": {
+      "items": {
+        "$ref": "#/$defs/UnifiedCandidate"
+      },
+      "title": "Candidates",
+      "type": "array"
+    },
+    "limitations": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    },
+    "error": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/UnifiedError"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "requestId",
+    "inputType",
+    "analysisStatus",
+    "modelVersion",
+    "policyVersion"
+  ],
+  "title": "UnifiedAnalysis",
+  "type": "object"
+}

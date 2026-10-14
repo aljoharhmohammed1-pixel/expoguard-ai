@@ -1,0 +1,158 @@
+{
+  "$defs": {
+    "CameraConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "cameraId": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Cameraid",
+          "type": "string"
+        },
+        "zoneId": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Zoneid"
+        },
+        "crowd": {
+          "$ref": "#/$defs/CrowdConfig"
+        }
+      },
+      "required": [
+        "cameraId"
+      ],
+      "title": "CameraConfig",
+      "type": "object"
+    },
+    "CrowdConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": false,
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "capacity": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Capacity"
+        },
+        "roi": {
+          "anyOf": [
+            {
+              "items": {
+                "maxItems": 2,
+                "minItems": 2,
+                "prefixItems": [
+                  {
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  }
+                ],
+                "type": "array"
+              },
+              "maxItems": 64,
+              "minItems": 3,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Roi"
+        },
+        "useFullFrame": {
+          "default": false,
+          "title": "Usefullframe",
+          "type": "boolean"
+        },
+        "thresholds": {
+          "$ref": "#/$defs/CrowdThresholds"
+        },
+        "reviewMedium": {
+          "default": false,
+          "title": "Reviewmedium",
+          "type": "boolean"
+        },
+        "inferenceImageSize": {
+          "default": 640,
+          "enum": [
+            640,
+            960,
+            1280,
+            1600
+          ],
+          "title": "Inferenceimagesize",
+          "type": "integer"
+        }
+      },
+      "title": "CrowdConfig",
+      "type": "object"
+    },
+    "CrowdThresholds": {
+      "additionalProperties": false,
+      "properties": {
+        "medium": {
+          "default": 0.5,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Medium",
+          "type": "number"
+        },
+        "high": {
+          "default": 0.7,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "High",
+          "type": "number"
+        },
+        "critical": {
+          "default": 0.9,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Critical",
+          "type": "number"
+        }
+      },
+      "title": "CrowdThresholds",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "cameras": {
+      "items": {
+        "$ref": "#/$defs/CameraConfig"
+      },
+      "maxItems": 10000,
+      "title": "Cameras",
+      "type": "array"
+    }
+  },
+  "title": "CameraCatalog",
+  "type": "object"
+}

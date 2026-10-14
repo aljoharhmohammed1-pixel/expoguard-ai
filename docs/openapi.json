@@ -1,0 +1,1892 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "ExpoGuard AI",
+    "version": "0.1.0-integration"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "413": {
+            "description": "Request Entity Too Large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported Media Type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/models": {
+      "get": {
+        "summary": "Models",
+        "operationId": "models_v1_models_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "413": {
+            "description": "Request Entity Too Large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported Media Type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/correlation/analyze": {
+      "post": {
+        "summary": "Analyze Correlation",
+        "operationId": "analyze_correlation_v1_correlation_analyze_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CorrelationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CorrelationResult"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request Entity Too Large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported Media Type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/summary": {
+      "post": {
+        "summary": "Summary",
+        "operationId": "summary_v1_summary_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SummaryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SummaryResult"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request Entity Too Large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported Media Type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/recommend": {
+      "post": {
+        "summary": "Recommendations",
+        "operationId": "recommendations_v1_recommend_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncidentFacts"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecommendationResult"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request Entity Too Large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported Media Type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/analyze/text": {
+      "post": {
+        "summary": "Analyze Text",
+        "operationId": "analyze_text_v1_analyze_text_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TextRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnifiedAnalysis"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request Entity Too Large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported Media Type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/analyze/image": {
+      "post": {
+        "summary": "Analyze Image",
+        "description": "Fire/smoke and optional Crowd V1 in one image. cameraId resolves host-configured normalized polygon ROI and capacity. Configured zone mapping is authoritative; conflicts return 422. Missing configuration safely skips crowd. HIGH/CRITICAL produce human-review candidates, never incidents. See README for DEMO-CROWD setup.",
+        "operationId": "analyze_image_v1_analyze_image_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_analyze_image_v1_analyze_image_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnifiedAnalysis"
+                },
+                "example": {
+                  "schemaVersion": "2.0.0",
+                  "requestId": "example-only",
+                  "inputType": "IMAGE",
+                  "imageId": "example-image",
+                  "textId": null,
+                  "audioId": null,
+                  "analysisStatus": "OK",
+                  "modelVersion": "fire-smoke-infernoguard-v1.0.0",
+                  "policyVersion": "fire-review-v0.3.0",
+                  "componentVersions": {
+                    "crowd": "yolo26n-person-v1.0.0"
+                  },
+                  "imageQuality": {
+                    "usable": true,
+                    "issues": []
+                  },
+                  "crowdMetrics": {
+                    "peopleCount": 4,
+                    "capacity": 4,
+                    "occupancyRatio": 1.0,
+                    "crowdLevel": "CRITICAL",
+                    "cameraId": "DEMO-CROWD",
+                    "zoneId": null,
+                    "roiApplied": false
+                  },
+                  "transcript": null,
+                  "detections": [
+                    {
+                      "detectionId": "crowd-count-1",
+                      "modality": "IMAGE",
+                      "label": "visible_people_count",
+                      "confidence": null,
+                      "bbox": null,
+                      "evidence": "4 visible people inside the configured monitoring area; capacity 4.",
+                      "textSpan": null
+                    }
+                  ],
+                  "candidates": [
+                    {
+                      "candidateId": "crowd-cand-1",
+                      "detectionIds": [
+                        "crowd-count-1"
+                      ],
+                      "category": "CROWD",
+                      "severity": null,
+                      "confidence": null,
+                      "summaryAr": "رُصد 4 شخصًا ضمن نطاق المراقبة؛ مستوى الإشغال التشغيلي يستدعي المراجعة.",
+                      "zoneId": null,
+                      "assetId": null,
+                      "affectsAccessibility": null,
+                      "decision": "REVIEW",
+                      "requiresHumanReview": true,
+                      "decisionReason": "Visible count meets a configured review threshold; this is not a certified safety assessment.",
+                      "mentionedZone": null
+                    }
+                  ],
+                  "limitations": [
+                    "Synthetic documentation example; not measured results.",
+                    "Single-frame visible people only; occlusion and camera angle affect counts.",
+                    "Configured MVP operational thresholds are not certified crowd-safety limits.",
+                    "No identity, tracking, entry/exit flow, speed or prediction."
+                  ],
+                  "error": null
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request Entity Too Large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported Media Type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnifiedAnalysis"
+                },
+                "example": {
+                  "schemaVersion": "2.0.0",
+                  "requestId": "example-only",
+                  "inputType": "IMAGE",
+                  "imageId": "example-image",
+                  "textId": null,
+                  "audioId": null,
+                  "analysisStatus": "ERROR",
+                  "modelVersion": "fire-smoke-infernoguard-v1.0.0",
+                  "policyVersion": "fire-review-v0.3.0",
+                  "componentVersions": {},
+                  "imageQuality": {
+                    "usable": true,
+                    "issues": []
+                  },
+                  "transcript": null,
+                  "detections": [],
+                  "candidates": [],
+                  "limitations": [],
+                  "error": {
+                    "code": "PERSON_INFERENCE_FAILED",
+                    "message": "Crowd analysis could not be completed."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "APIError": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Message"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "APIError"
+      },
+      "APIErrorResponse": {
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/APIError"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "title": "APIErrorResponse"
+      },
+      "ActionProposal": {
+        "properties": {
+          "playbookId": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Playbookid"
+          },
+          "playbookVersion": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Playbookversion"
+          },
+          "playbookSha256": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Playbooksha256"
+          },
+          "sourceRef": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Sourceref"
+          },
+          "sourceSection": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Sourcesection"
+          },
+          "stepId": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Stepid"
+          },
+          "textAr": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Textar"
+          },
+          "evidenceIds": {
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Evidenceids"
+          },
+          "requiresHumanApproval": {
+            "type": "boolean",
+            "const": true,
+            "title": "Requireshumanapproval",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "playbookId",
+          "playbookVersion",
+          "playbookSha256",
+          "sourceRef",
+          "sourceSection",
+          "stepId",
+          "textAr",
+          "evidenceIds"
+        ],
+        "title": "ActionProposal"
+      },
+      "AlertFacts": {
+        "properties": {
+          "alertId": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Alertid"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "FIRE",
+              "CROWD",
+              "MEDICAL",
+              "ACCESSIBILITY",
+              "TECHNICAL_FAILURE",
+              "CLEANLINESS",
+              "SECURITY",
+              "OTHER"
+            ],
+            "title": "Category"
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observedat"
+          },
+          "zoneId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Zoneid"
+          },
+          "assetId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Assetid"
+          },
+          "eventId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Eventid"
+          },
+          "summary": {
+            "type": "string",
+            "maxLength": 20000,
+            "title": "Summary",
+            "default": ""
+          },
+          "aiConfidence": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Aiconfidence"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "alertId",
+          "category",
+          "observedAt"
+        ],
+        "title": "AlertFacts"
+      },
+      "Body_analyze_image_v1_analyze_image_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          },
+          "requestId": {
+            "type": "string",
+            "title": "Requestid"
+          },
+          "imageId": {
+            "type": "string",
+            "title": "Imageid"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source"
+          },
+          "capturedAt": {
+            "type": "string",
+            "title": "Capturedat"
+          },
+          "cameraId": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cameraid"
+          },
+          "zoneId": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Zoneid"
+          },
+          "assetId": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Assetid"
+          },
+          "eventId": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Eventid"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file",
+          "requestId",
+          "imageId",
+          "source",
+          "capturedAt"
+        ],
+        "title": "Body_analyze_image_v1_analyze_image_post"
+      },
+      "CorrelationPolicy": {
+        "properties": {
+          "windowSeconds": {
+            "type": "integer",
+            "maximum": 86400.0,
+            "exclusiveMinimum": 0.0,
+            "title": "Windowseconds",
+            "default": 300
+          },
+          "reviewThreshold": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Reviewthreshold",
+            "default": 0.7
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "CorrelationPolicy"
+      },
+      "CorrelationProposal": {
+        "properties": {
+          "alertIds": {
+            "prefixItems": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            ],
+            "type": "array",
+            "maxItems": 2,
+            "minItems": 2,
+            "title": "Alertids"
+          },
+          "policyVersion": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Policyversion",
+            "default": "correlation-heuristic-v0.1.0"
+          },
+          "windowSeconds": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Windowseconds"
+          },
+          "reviewThreshold": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Reviewthreshold"
+          },
+          "decision": {
+            "type": "string",
+            "enum": [
+              "REVIEW_LINK",
+              "NO_SUGGESTION",
+              "SAME_ALERT"
+            ],
+            "title": "Decision"
+          },
+          "correlationScore": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Correlationscore"
+          },
+          "lexicalSimilarity": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lexicalsimilarity"
+          },
+          "timeDeltaSeconds": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Timedeltaseconds"
+          },
+          "reasons": {
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "type": "array",
+            "title": "Reasons"
+          },
+          "requiresHumanReview": {
+            "type": "boolean",
+            "const": true,
+            "title": "Requireshumanreview",
+            "default": true
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "alertIds",
+          "windowSeconds",
+          "reviewThreshold",
+          "decision",
+          "correlationScore",
+          "lexicalSimilarity",
+          "timeDeltaSeconds",
+          "reasons"
+        ],
+        "title": "CorrelationProposal"
+      },
+      "CorrelationRequest": {
+        "properties": {
+          "left": {
+            "$ref": "#/components/schemas/AlertFacts"
+          },
+          "right": {
+            "$ref": "#/components/schemas/AlertFacts"
+          },
+          "policy": {
+            "$ref": "#/components/schemas/CorrelationPolicy"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "left",
+          "right"
+        ],
+        "title": "CorrelationRequest"
+      },
+      "CorrelationResult": {
+        "properties": {
+          "proposal": {
+            "$ref": "#/components/schemas/CorrelationProposal"
+          },
+          "scoreBreakdown": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "object",
+            "title": "Scorebreakdown"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "proposal",
+          "scoreBreakdown"
+        ],
+        "title": "CorrelationResult"
+      },
+      "CrowdMetrics": {
+        "properties": {
+          "peopleCount": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Peoplecount"
+          },
+          "capacity": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "exclusiveMinimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Capacity"
+          },
+          "occupancyRatio": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occupancyratio"
+          },
+          "crowdLevel": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "NORMAL",
+                  "MEDIUM",
+                  "HIGH",
+                  "CRITICAL"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Crowdlevel"
+          },
+          "cameraId": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Cameraid"
+          },
+          "zoneId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Zoneid"
+          },
+          "roiApplied": {
+            "type": "boolean",
+            "title": "Roiapplied"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "peopleCount",
+          "cameraId",
+          "roiApplied"
+        ],
+        "title": "CrowdMetrics"
+      },
+      "Evidence": {
+        "properties": {
+          "detectionId": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Detectionid"
+          },
+          "modality": {
+            "type": "string",
+            "enum": [
+              "IMAGE",
+              "TEXT"
+            ],
+            "title": "Modality"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Label"
+          },
+          "confidence": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence"
+          },
+          "bbox": {
+            "anyOf": [
+              {
+                "prefixItems": [
+                  {
+                    "type": "number",
+                    "maximum": 1.0,
+                    "minimum": 0.0
+                  },
+                  {
+                    "type": "number",
+                    "maximum": 1.0,
+                    "minimum": 0.0
+                  },
+                  {
+                    "type": "number",
+                    "maximum": 1.0,
+                    "minimum": 0.0
+                  },
+                  {
+                    "type": "number",
+                    "maximum": 1.0,
+                    "minimum": 0.0
+                  }
+                ],
+                "type": "array",
+                "maxItems": 4,
+                "minItems": 4
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bbox"
+          },
+          "evidence": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Evidence"
+          },
+          "textSpan": {
+            "anyOf": [
+              {
+                "prefixItems": [
+                  {
+                    "type": "integer",
+                    "minimum": 0.0
+                  },
+                  {
+                    "type": "integer",
+                    "minimum": 0.0
+                  }
+                ],
+                "type": "array",
+                "maxItems": 2,
+                "minItems": 2
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Textspan",
+            "description": "Python Unicode code point offsets [start, end), with 0 <= start < end <= source length. Not UTF-16 code units."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "detectionId",
+          "modality",
+          "label",
+          "confidence",
+          "evidence"
+        ],
+        "title": "Evidence"
+      },
+      "ImageQuality": {
+        "properties": {
+          "usable": {
+            "type": "boolean",
+            "title": "Usable"
+          },
+          "issues": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "DECODE_FAILED",
+                "TOO_SMALL",
+                "TOO_LARGE",
+                "TOO_DARK",
+                "TOO_BRIGHT",
+                "TOO_BLURRY",
+                "EMPTY_IMAGE",
+                "UNSUPPORTED_FORMAT"
+              ]
+            },
+            "type": "array",
+            "title": "Issues"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "usable"
+        ],
+        "title": "ImageQuality"
+      },
+      "IncidentFacts": {
+        "properties": {
+          "referenceId": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Referenceid"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "FIRE",
+              "CROWD",
+              "MEDICAL",
+              "ACCESSIBILITY",
+              "TECHNICAL_FAILURE",
+              "CLEANLINESS",
+              "SECURITY",
+              "OTHER"
+            ],
+            "title": "Category"
+          },
+          "evidenceIds": {
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Evidenceids"
+          },
+          "zoneId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Zoneid"
+          },
+          "assetId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Assetid"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "referenceId",
+          "category",
+          "evidenceIds"
+        ],
+        "title": "IncidentFacts"
+      },
+      "RecommendationResult": {
+        "properties": {
+          "referenceId": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Referenceid"
+          },
+          "policyVersion": {
+            "type": "string",
+            "const": "approved-playbook-v0.1.0",
+            "title": "Policyversion",
+            "default": "approved-playbook-v0.1.0"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PROPOSED",
+              "NO_APPROVED_PLAYBOOK",
+              "NO_APPLICABLE_PLAYBOOK",
+              "AMBIGUOUS_PLAYBOOK"
+            ],
+            "title": "Status"
+          },
+          "proposals": {
+            "items": {
+              "$ref": "#/components/schemas/ActionProposal"
+            },
+            "type": "array",
+            "title": "Proposals"
+          },
+          "reasons": {
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "type": "array",
+            "title": "Reasons"
+          },
+          "requiresHumanReview": {
+            "type": "boolean",
+            "const": true,
+            "title": "Requireshumanreview",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "referenceId",
+          "status",
+          "reasons"
+        ],
+        "title": "RecommendationResult"
+      },
+      "SummaryRequest": {
+        "properties": {
+          "alerts": {
+            "items": {
+              "$ref": "#/components/schemas/AlertFacts"
+            },
+            "type": "array",
+            "maxItems": 100,
+            "minItems": 1,
+            "title": "Alerts"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "alerts"
+        ],
+        "title": "SummaryRequest"
+      },
+      "SummaryResult": {
+        "properties": {
+          "summaryAr": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Summaryar"
+          },
+          "sourceCount": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Sourcecount"
+          },
+          "alertIds": {
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "type": "array",
+            "title": "Alertids"
+          },
+          "policyVersion": {
+            "type": "string",
+            "title": "Policyversion",
+            "default": "facts-summary-v0.1.0"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "summaryAr",
+          "sourceCount",
+          "alertIds",
+          "limitations"
+        ],
+        "title": "SummaryResult"
+      },
+      "TextRequest": {
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Requestid"
+          },
+          "source": {
+            "type": "string",
+            "const": "VISITOR_APP",
+            "title": "Source",
+            "default": "VISITOR_APP"
+          },
+          "zoneId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Zoneid"
+          },
+          "assetId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Assetid"
+          },
+          "textId": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Textid"
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 20000,
+            "title": "Text"
+          },
+          "language": {
+            "type": "string",
+            "const": "ar",
+            "title": "Language",
+            "default": "ar"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "requestId",
+          "textId",
+          "text"
+        ],
+        "title": "TextRequest"
+      },
+      "Transcript": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 20000,
+            "title": "Text"
+          },
+          "language": {
+            "type": "string",
+            "const": "ar",
+            "title": "Language"
+          },
+          "transcriptionConfidence": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Transcriptionconfidence"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "text",
+          "language"
+        ],
+        "title": "Transcript"
+      },
+      "UnifiedAnalysis": {
+        "properties": {
+          "schemaVersion": {
+            "type": "string",
+            "const": "2.0.0",
+            "title": "Schemaversion",
+            "default": "2.0.0"
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Requestid"
+          },
+          "inputType": {
+            "type": "string",
+            "enum": [
+              "IMAGE",
+              "TEXT",
+              "AUDIO"
+            ],
+            "title": "Inputtype"
+          },
+          "imageId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Imageid"
+          },
+          "textId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Textid"
+          },
+          "audioId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Audioid"
+          },
+          "analysisStatus": {
+            "type": "string",
+            "enum": [
+              "OK",
+              "UNUSABLE",
+              "ERROR"
+            ],
+            "title": "Analysisstatus"
+          },
+          "modelVersion": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Modelversion"
+          },
+          "policyVersion": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Policyversion"
+          },
+          "componentVersions": {
+            "additionalProperties": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "type": "object",
+            "title": "Componentversions"
+          },
+          "imageQuality": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ImageQuality"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "crowdMetrics": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CrowdMetrics"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "transcript": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Transcript"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "detections": {
+            "items": {
+              "$ref": "#/components/schemas/Evidence"
+            },
+            "type": "array",
+            "title": "Detections"
+          },
+          "candidates": {
+            "items": {
+              "$ref": "#/components/schemas/UnifiedCandidate"
+            },
+            "type": "array",
+            "title": "Candidates"
+          },
+          "limitations": {
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "type": "array",
+            "title": "Limitations"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/UnifiedError"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "requestId",
+          "inputType",
+          "analysisStatus",
+          "modelVersion",
+          "policyVersion"
+        ],
+        "title": "UnifiedAnalysis"
+      },
+      "UnifiedCandidate": {
+        "properties": {
+          "candidateId": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Candidateid"
+          },
+          "detectionIds": {
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Detectionids"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "FIRE",
+              "CROWD",
+              "MEDICAL",
+              "ACCESSIBILITY",
+              "TECHNICAL_FAILURE",
+              "CLEANLINESS",
+              "SECURITY",
+              "OTHER"
+            ],
+            "title": "Category"
+          },
+          "severity": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "LOW",
+                  "MEDIUM",
+                  "HIGH",
+                  "CRITICAL"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Severity"
+          },
+          "confidence": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence"
+          },
+          "summaryAr": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Summaryar"
+          },
+          "zoneId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Zoneid"
+          },
+          "assetId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Assetid"
+          },
+          "affectsAccessibility": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Affectsaccessibility"
+          },
+          "decision": {
+            "type": "string",
+            "enum": [
+              "NONE",
+              "REVIEW",
+              "ALERT",
+              "ALARM"
+            ],
+            "title": "Decision",
+            "default": "REVIEW"
+          },
+          "requiresHumanReview": {
+            "type": "boolean",
+            "title": "Requireshumanreview",
+            "default": true
+          },
+          "decisionReason": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Decisionreason"
+          },
+          "mentionedZone": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mentionedzone"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "candidateId",
+          "detectionIds",
+          "category",
+          "confidence",
+          "summaryAr",
+          "decisionReason"
+        ],
+        "title": "UnifiedCandidate"
+      },
+      "UnifiedError": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Message"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "UnifiedError"
+      }
+    }
+  }
+}

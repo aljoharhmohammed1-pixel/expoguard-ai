@@ -1,0 +1,109 @@
+{
+  "timestamp": "2026-10-14T13:59:51.271870+00:00",
+  "python": "3.11.9",
+  "environment": "clean integration venv",
+  "device": "cpu",
+  "passed": true,
+  "checks": [
+    {
+      "name": "Health",
+      "httpStatus": 200,
+      "durationMs": "2.867",
+      "passed": true
+    },
+    {
+      "name": "Models",
+      "httpStatus": 200,
+      "durationMs": "1.615",
+      "passed": true
+    },
+    {
+      "name": "Swagger HTML",
+      "passed": true,
+      "httpStatus": 200
+    },
+    {
+      "name": "Export OpenAPI from running server",
+      "passed": true,
+      "httpStatus": 200
+    },
+    {
+      "name": "Fire image",
+      "httpStatus": 200,
+      "durationMs": "4697.635",
+      "passed": true
+    },
+    {
+      "name": "Smoke image",
+      "httpStatus": 200,
+      "durationMs": "146.154",
+      "passed": true
+    },
+    {
+      "name": "Normal image",
+      "httpStatus": 200,
+      "durationMs": "672.947",
+      "passed": true
+    },
+    {
+      "name": "Corrupt image",
+      "httpStatus": 200,
+      "durationMs": "185.365",
+      "passed": true
+    },
+    {
+      "name": "Crowd configured camera",
+      "httpStatus": 200,
+      "durationMs": "808.102",
+      "passed": true
+    },
+    {
+      "name": "Camera without crowd configuration",
+      "httpStatus": 200,
+      "durationMs": "154.716",
+      "passed": true
+    },
+    {
+      "name": "Arabic text",
+      "httpStatus": 200,
+      "durationMs": "12.578",
+      "passed": true
+    },
+    {
+      "name": "Correlation",
+      "httpStatus": 200,
+      "durationMs": "3.938",
+      "passed": true
+    },
+    {
+      "name": "Summary",
+      "httpStatus": 200,
+      "durationMs": "3.504",
+      "passed": true
+    },
+    {
+      "name": "Recommendation",
+      "httpStatus": 200,
+      "durationMs": "3.576",
+      "passed": true
+    },
+    {
+      "name": "Validation error",
+      "httpStatus": 422,
+      "durationMs": "1.394",
+      "passed": true
+    },
+    {
+      "name": "Oversized body",
+      "httpStatus": 413,
+      "durationMs": "92.108",
+      "passed": true
+    },
+    {
+      "name": "Unsupported MIME",
+      "httpStatus": 415,
+      "durationMs": "3.591",
+      "passed": true
+    }
+  ]
+}

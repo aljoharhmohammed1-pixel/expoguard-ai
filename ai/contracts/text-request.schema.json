@@ -1,0 +1,69 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "requestId": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Requestid",
+      "type": "string"
+    },
+    "source": {
+      "const": "VISITOR_APP",
+      "default": "VISITOR_APP",
+      "title": "Source",
+      "type": "string"
+    },
+    "zoneId": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Zoneid"
+    },
+    "assetId": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Assetid"
+    },
+    "textId": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Textid",
+      "type": "string"
+    },
+    "text": {
+      "maxLength": 20000,
+      "title": "Text",
+      "type": "string"
+    },
+    "language": {
+      "const": "ar",
+      "default": "ar",
+      "title": "Language",
+      "type": "string"
+    }
+  },
+  "required": [
+    "requestId",
+    "textId",
+    "text"
+  ],
+  "title": "TextRequest",
+  "type": "object"
+}

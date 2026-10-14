@@ -1,0 +1,168 @@
+{
+  "$defs": {
+    "ImageRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "requestId": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Requestid",
+          "type": "string"
+        },
+        "imageId": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Imageid",
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "CCTV",
+            "VISITOR_APP"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "capturedAt": {
+          "format": "date-time",
+          "title": "Capturedat",
+          "type": "string"
+        },
+        "cameraId": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cameraid"
+        },
+        "zoneId": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Zoneid"
+        },
+        "eventId": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Eventid"
+        },
+        "assetId": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assetid"
+        },
+        "regionOfInterest": {
+          "anyOf": [
+            {
+              "maxItems": 4,
+              "minItems": 4,
+              "prefixItems": [
+                {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Regionofinterest"
+        },
+        "context": {
+          "additionalProperties": true,
+          "title": "Context",
+          "type": "object"
+        }
+      },
+      "required": [
+        "requestId",
+        "imageId",
+        "source",
+        "capturedAt"
+      ],
+      "title": "ImageRequest",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "contractVersion": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Contractversion",
+      "type": "string"
+    },
+    "inputType": {
+      "const": "IMAGE",
+      "title": "Inputtype",
+      "type": "string"
+    },
+    "analysisMode": {
+      "const": "FIRE_SMOKE",
+      "title": "Analysismode",
+      "type": "string"
+    },
+    "metadata": {
+      "$ref": "#/$defs/ImageRequest"
+    }
+  },
+  "required": [
+    "inputType",
+    "analysisMode",
+    "metadata"
+  ],
+  "title": "IntegrationRequest",
+  "type": "object"
+}

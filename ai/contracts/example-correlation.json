@@ -1,0 +1,4 @@
+{
+  "left": {"alertId": "backend-demo-a", "category": "FIRE", "observedAt": "2026-10-13T10:00:00Z", "zoneId": "TEST-ZONE", "eventId": "TEST-EVENT", "summary": "دخان قرب البوابة", "aiConfidence": 0.9},
+  "right": {"alertId": "backend-demo-b", "category": "FIRE", "observedAt": "2026-10-13T10:00:30Z", "zoneId": "TEST-ZONE", "eventId": "TEST-EVENT", "summary": "دخان قرب البوابة", "aiConfidence": 0.6}
+}

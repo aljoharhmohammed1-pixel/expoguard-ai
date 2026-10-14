@@ -1,0 +1,13 @@
+{
+  "scope": "Staged integration candidate, before adding this report",
+  "filesChecked": 132,
+  "credentialPatternFindings": [],
+  "forbiddenArtifactsFound": [],
+  "lfsModelPointers": [
+    "ai/models/infernoguard_best.pt",
+    "ai/models/yolo26n.pt"
+  ],
+  "modelChecksumsUnchanged": true,
+  "testReportsMatchCurrentSource": true,
+  "note": "Pattern scan plus allowlist inspection; not an external security certification."
+}

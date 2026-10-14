@@ -1,0 +1,75 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "requestId": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Requestid",
+      "type": "string"
+    },
+    "source": {
+      "const": "VISITOR_APP",
+      "default": "VISITOR_APP",
+      "title": "Source",
+      "type": "string"
+    },
+    "zoneId": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Zoneid"
+    },
+    "assetId": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Assetid"
+    },
+    "audioId": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Audioid",
+      "type": "string"
+    },
+    "mimeType": {
+      "enum": [
+        "audio/wav",
+        "audio/mpeg",
+        "audio/mp4",
+        "audio/webm",
+        "audio/ogg"
+      ],
+      "title": "Mimetype",
+      "type": "string"
+    },
+    "language": {
+      "const": "ar",
+      "default": "ar",
+      "title": "Language",
+      "type": "string"
+    }
+  },
+  "required": [
+    "requestId",
+    "audioId",
+    "mimeType"
+  ],
+  "title": "AudioRequest",
+  "type": "object"
+}

@@ -1,0 +1,133 @@
+{
+  "$defs": {
+    "ActionProposal": {
+      "additionalProperties": false,
+      "properties": {
+        "playbookId": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Playbookid",
+          "type": "string"
+        },
+        "playbookVersion": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Playbookversion",
+          "type": "string"
+        },
+        "playbookSha256": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Playbooksha256",
+          "type": "string"
+        },
+        "sourceRef": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Sourceref",
+          "type": "string"
+        },
+        "sourceSection": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Sourcesection",
+          "type": "string"
+        },
+        "stepId": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Stepid",
+          "type": "string"
+        },
+        "textAr": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Textar",
+          "type": "string"
+        },
+        "evidenceIds": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Evidenceids",
+          "type": "array"
+        },
+        "requiresHumanApproval": {
+          "const": true,
+          "default": true,
+          "title": "Requireshumanapproval",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "playbookId",
+        "playbookVersion",
+        "playbookSha256",
+        "sourceRef",
+        "sourceSection",
+        "stepId",
+        "textAr",
+        "evidenceIds"
+      ],
+      "title": "ActionProposal",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "referenceId": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Referenceid",
+      "type": "string"
+    },
+    "policyVersion": {
+      "const": "approved-playbook-v0.1.0",
+      "default": "approved-playbook-v0.1.0",
+      "title": "Policyversion",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "PROPOSED",
+        "NO_APPROVED_PLAYBOOK",
+        "NO_APPLICABLE_PLAYBOOK",
+        "AMBIGUOUS_PLAYBOOK"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "proposals": {
+      "items": {
+        "$ref": "#/$defs/ActionProposal"
+      },
+      "title": "Proposals",
+      "type": "array"
+    },
+    "reasons": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+    },
+    "requiresHumanReview": {
+      "const": true,
+      "default": true,
+      "title": "Requireshumanreview",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "referenceId",
+    "status",
+    "reasons"
+  ],
+  "title": "RecommendationResult",
+  "type": "object"
+}

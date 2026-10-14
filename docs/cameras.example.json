@@ -1,0 +1,14 @@
+{
+  "cameras": [
+    {
+      "cameraId": "INTEGRATION-DEMO",
+      "zoneId": "DEMO-ZONE",
+      "crowd": {
+        "enabled": true,
+        "capacity": 10,
+        "roi": [[0, 0], [1, 0], [1, 1], [0, 1]],
+        "inferenceImageSize": 640
+      }
+    }
+  ]
+}

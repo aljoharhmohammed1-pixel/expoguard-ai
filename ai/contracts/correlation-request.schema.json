@@ -1,0 +1,142 @@
+{
+  "$defs": {
+    "AlertFacts": {
+      "additionalProperties": false,
+      "properties": {
+        "alertId": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Alertid",
+          "type": "string"
+        },
+        "category": {
+          "enum": [
+            "FIRE",
+            "CROWD",
+            "MEDICAL",
+            "ACCESSIBILITY",
+            "TECHNICAL_FAILURE",
+            "CLEANLINESS",
+            "SECURITY",
+            "OTHER"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "observedAt": {
+          "format": "date-time",
+          "title": "Observedat",
+          "type": "string"
+        },
+        "zoneId": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Zoneid"
+        },
+        "assetId": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assetid"
+        },
+        "eventId": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Eventid"
+        },
+        "summary": {
+          "default": "",
+          "maxLength": 20000,
+          "title": "Summary",
+          "type": "string"
+        },
+        "aiConfidence": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Aiconfidence"
+        }
+      },
+      "required": [
+        "alertId",
+        "category",
+        "observedAt"
+      ],
+      "title": "AlertFacts",
+      "type": "object"
+    },
+    "CorrelationPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "windowSeconds": {
+          "default": 300,
+          "exclusiveMinimum": 0,
+          "maximum": 86400,
+          "title": "Windowseconds",
+          "type": "integer"
+        },
+        "reviewThreshold": {
+          "default": 0.7,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Reviewthreshold",
+          "type": "number"
+        }
+      },
+      "title": "CorrelationPolicy",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "left": {
+      "$ref": "#/$defs/AlertFacts"
+    },
+    "right": {
+      "$ref": "#/$defs/AlertFacts"
+    },
+    "policy": {
+      "$ref": "#/$defs/CorrelationPolicy"
+    }
+  },
+  "required": [
+    "left",
+    "right"
+  ],
+  "title": "CorrelationRequest",
+  "type": "object"
+}

@@ -1,0 +1,73 @@
+{
+  "datasetVersion": "local-demo-v1",
+  "independence": "UNKNOWN",
+  "provenance": "Six local demonstration images; training overlap unknown. Filename categories are hints, not reviewed ground truth.",
+  "samples": [
+    {
+      "imageId": "fire_1.jpg",
+      "path": "../datasets/fire_smoke_samples/fire_1.jpg",
+      "scenario": "unassigned",
+      "sourceHint": "fire",
+      "reviewStatus": "PENDING",
+      "expectedFire": null,
+      "reviewer": null,
+      "reviewedAt": null,
+      "reviewNotes": ""
+    },
+    {
+      "imageId": "fire_2.jpg",
+      "path": "../datasets/fire_smoke_samples/fire_2.jpg",
+      "scenario": "unassigned",
+      "sourceHint": "fire",
+      "reviewStatus": "PENDING",
+      "expectedFire": null,
+      "reviewer": null,
+      "reviewedAt": null,
+      "reviewNotes": ""
+    },
+    {
+      "imageId": "smoke_1.jpg",
+      "path": "../datasets/fire_smoke_samples/smoke_1.jpg",
+      "scenario": "unassigned",
+      "sourceHint": "smoke",
+      "reviewStatus": "PENDING",
+      "expectedFire": null,
+      "reviewer": null,
+      "reviewedAt": null,
+      "reviewNotes": ""
+    },
+    {
+      "imageId": "smoke_2.jpg",
+      "path": "../datasets/fire_smoke_samples/smoke_2.jpg",
+      "scenario": "unassigned",
+      "sourceHint": "smoke",
+      "reviewStatus": "PENDING",
+      "expectedFire": null,
+      "reviewer": null,
+      "reviewedAt": null,
+      "reviewNotes": ""
+    },
+    {
+      "imageId": "neutral_1.jpg",
+      "path": "../datasets/fire_smoke_samples/neutral_1.jpg",
+      "scenario": "unassigned",
+      "sourceHint": "neutral",
+      "reviewStatus": "PENDING",
+      "expectedFire": null,
+      "reviewer": null,
+      "reviewedAt": null,
+      "reviewNotes": ""
+    },
+    {
+      "imageId": "neutral_2.jpg",
+      "path": "../datasets/fire_smoke_samples/neutral_2.jpg",
+      "scenario": "unassigned",
+      "sourceHint": "neutral",
+      "reviewStatus": "PENDING",
+      "expectedFire": null,
+      "reviewer": null,
+      "reviewedAt": null,
+      "reviewNotes": ""
+    }
+  ]
+}

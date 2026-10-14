@@ -1,0 +1,32 @@
+[
+  {
+    "file": "fire_1.jpg",
+    "url": "https://raw.githubusercontent.com/DeepQuestAI/Fire-Smoke-Dataset/master/Assets/fire_1.jpg",
+    "source_category": "fire"
+  },
+  {
+    "file": "fire_2.jpg",
+    "url": "https://raw.githubusercontent.com/DeepQuestAI/Fire-Smoke-Dataset/master/Assets/fire_2.jpg",
+    "source_category": "fire"
+  },
+  {
+    "file": "smoke_1.jpg",
+    "url": "https://raw.githubusercontent.com/DeepQuestAI/Fire-Smoke-Dataset/master/Assets/smoke_1.jpg",
+    "source_category": "smoke"
+  },
+  {
+    "file": "smoke_2.jpg",
+    "url": "https://raw.githubusercontent.com/DeepQuestAI/Fire-Smoke-Dataset/master/Assets/smoke_2.jpg",
+    "source_category": "smoke"
+  },
+  {
+    "file": "neutral_1.jpg",
+    "url": "https://raw.githubusercontent.com/DeepQuestAI/Fire-Smoke-Dataset/master/Assets/neutral_1.jpg",
+    "source_category": "neutral"
+  },
+  {
+    "file": "neutral_2.jpg",
+    "url": "https://raw.githubusercontent.com/DeepQuestAI/Fire-Smoke-Dataset/master/Assets/neutral_2.jpg",
+    "source_category": "neutral"
+  }
+]

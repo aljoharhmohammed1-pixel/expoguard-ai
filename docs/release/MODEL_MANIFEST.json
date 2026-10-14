@@ -1,0 +1,22 @@
+[
+  {
+    "modelId": "fire-smoke",
+    "modelVersion": "fire-smoke-infernoguard-v1.0.0",
+    "purpose": "Fire and smoke object detection",
+    "framework": "Ultralytics / PyTorch",
+    "path": "ai/models/infernoguard_best.pt",
+    "required": "Yes, service startup",
+    "sizeBytes": 18346049,
+    "sha256": "5fe6eb54fc9006e6f31c178fa2efe04524e2faf6b6955e8c6967d57ffd008ab5"
+  },
+  {
+    "modelId": "person-detector",
+    "modelVersion": "yolo26n-person-v1.0.0",
+    "purpose": "Person detection for Basic Crowd V1 occupancy analysis",
+    "framework": "Ultralytics / PyTorch",
+    "path": "ai/models/yolo26n.pt",
+    "required": "When a camera enables valid crowd ROI/full-frame analysis",
+    "sizeBytes": 5544453,
+    "sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef"
+  }
+]

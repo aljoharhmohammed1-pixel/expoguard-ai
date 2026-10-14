@@ -1,0 +1,6 @@
+* text=auto
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+ai/models/infernoguard_best.pt filter=lfs diff=lfs merge=lfs -text
+ai/models/yolo26n.pt filter=lfs diff=lfs merge=lfs -text
